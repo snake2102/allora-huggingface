@@ -38,23 +38,23 @@ A complete working example is provided in the `docker-compose.yml` file.
     
     Copy the example configuration file and populate it with your variables:
     ```sh
-    nano config.json
+    nano app.py
     ```
-2. **Copy and Populate Configuration**
+3. **Copy and Populate Configuration**
     
     Copy the example configuration file and populate it with your variables:
     ```sh
     nano config.json
     ```
 
-3. **Initialize Worker**
+4. **Initialize Worker**
     
     Run the following commands from the project's root directory to initialize the worker:
     ```sh
     chmod +x init.config
     ./init.config
     ```
-4. **Start the Services**
+5. **Start the Services**
     
     Run the following command to start the worker node, inference, and updater nodes:
     ```sh
