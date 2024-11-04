@@ -34,7 +34,7 @@ A complete working example is provided in the `docker-compose.yml` file.
    ```sh
     cd allora-huggingface
     ```
-2. **Copy and Populate Configuration**
+2. **API KEY**
     
     Copy the example configuration file and populate it with your variables:
     ```sh
