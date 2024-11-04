@@ -36,7 +36,7 @@ A complete working example is provided in the `docker-compose.yml` file.
     ```
 2. **API KEY**
     
-    Copy the example configuration file and populate it with your variables:
+    Add your coingecko API key:
     ```sh
     nano app.py
     ```
