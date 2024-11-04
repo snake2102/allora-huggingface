@@ -39,10 +39,6 @@ A complete working example is provided in the `docker-compose.yml` file.
     chmod +x init.config
     ./init.config
     ```
-    These commands will:
-    - Automatically create Allora keys for your worker.
-    - Export the needed variables from the created account to be used by the worker node, bundle them with your provided `config.json`, and pass them to the node as environment variables.
-
 4. **Start the Services**
     
     Run the following command to start the worker node, inference, and updater nodes:
