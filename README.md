@@ -19,14 +19,17 @@ A complete working example is provided in the `docker-compose.yml` file.
 ### Steps to Setup
 
 1. **Clone the Repository**
-2. **Copy and Populate Configuration**
+   ```sh
+    cp config.example.json config.json
+    ```
+3. **Copy and Populate Configuration**
     
     Copy the example configuration file and populate it with your variables:
     ```sh
     cp config.example.json config.json
     ```
 
-3. **Initialize Worker**
+4. **Initialize Worker**
     
     Run the following commands from the project's root directory to initialize the worker:
     ```sh
@@ -37,11 +40,11 @@ A complete working example is provided in the `docker-compose.yml` file.
     - Automatically create Allora keys for your worker.
     - Export the needed variables from the created account to be used by the worker node, bundle them with your provided `config.json`, and pass them to the node as environment variables.
 
-4. **Faucet Your Worker Node**
+5. **Faucet Your Worker Node**
     
     You can find the offchain worker node's address in `./worker-data/env_file` under `ALLORA_OFFCHAIN_ACCOUNT_ADDRESS`. [Add faucet funds](https://docs.allora.network/devs/get-started/setup-wallet#add-faucet-funds) to your worker's wallet before starting it.
 
-5. **Start the Services**
+6. **Start the Services**
     
     Run the following command to start the worker node, inference, and updater nodes:
     ```sh
