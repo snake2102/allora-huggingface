@@ -34,13 +34,7 @@ A complete working example is provided in the `docker-compose.yml` file.
    ```sh
     cd allora-huggingface
     ```
-2. **API KEY**
-    
-    Add your coingecko API key:
-    ```sh
-    nano app.py
-    ```
-3. **Copy and Populate Configuration**
+2. **Copy and Populate Configuration**
     
     Copy the example configuration file and populate it with your variables:
     ```sh
