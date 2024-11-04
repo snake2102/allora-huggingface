@@ -40,6 +40,12 @@ A complete working example is provided in the `docker-compose.yml` file.
     ```sh
     nano config.json
     ```
+2. **Copy and Populate Configuration**
+    
+    Copy the example configuration file and populate it with your variables:
+    ```sh
+    nano config.json
+    ```
 
 3. **Initialize Worker**
     
