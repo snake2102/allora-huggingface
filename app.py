@@ -9,7 +9,7 @@ from chronos import ChronosPipeline
 app = Flask(__name__)
 
 # define the Hugging Face model we will use
-model_name = "amazon/chronos-t5-tiny"
+model_name = "amazon/chronos-t5-small"
 
 def get_coingecko_url(token):
     base_url = "https://api.coingecko.com/api/v3/coins/"
