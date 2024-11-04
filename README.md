@@ -21,7 +21,7 @@ chmod +x /usr/local/bin/docker-compose
 docker-compose --version
 ```
 
-## Docker-Compose Setup
+## Install worker
 
 A complete working example is provided in the `docker-compose.yml` file.
 
