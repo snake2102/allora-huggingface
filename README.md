@@ -45,11 +45,6 @@ A complete working example is provided in the `docker-compose.yml` file.
     ```sh
     docker compose up --build
     ```
-    To confirm that the worker successfully sends the inferences to the chain, look for the following log:
-    ```
-    {"level":"debug","msg":"Send Worker Data to chain","txHash":<tx-hash>,"time":<timestamp>,"message":"Success"}
-    ```
-
 ## Testing Inference Only
 
 This setup allows you to develop your model without the need to bring up the offchain worker. To test the inference model only:
