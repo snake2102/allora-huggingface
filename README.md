@@ -22,11 +22,14 @@ A complete working example is provided in the `docker-compose.yml` file.
    ```sh
     git clone https://github.com/snake2102/allora-huggingface.git
     ```
-3. **Copy and Populate Configuration**
+   ```sh
+    cd allora-huggingface
+    ```
+2. **Copy and Populate Configuration**
     
     Copy the example configuration file and populate it with your variables:
     ```sh
-    cp config.example.json config.json
+    nano config.json
     ```
 
 4. **Initialize Worker**
