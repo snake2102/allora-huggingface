@@ -60,31 +60,3 @@ A complete working example is provided in the `docker-compose.yml` file.
     ```sh
     docker compose up --build
     ```
-## Testing Inference Only
-
-This setup allows you to develop your model without the need to bring up the offchain worker. To test the inference model only:
-
-1. Run the following command to start the inference node:
-    ```sh
-    docker compose up --build inference
-    ```
-
-2. Send requests to the inference model. For example, request ETH price inferences:
-    
-    ```sh
-    curl http://127.0.0.1:8000/inference/ETH
-    ```
-    Expected response:
-    ```json
-    {"value":"2564.021586281073"}
-    ```
-
-3. Update the node's internal state (download pricing data, train, and update the model):
-    
-    ```sh
-    curl http://127.0.0.1:8000/update
-    ```
-    Expected response:
-    ```sh
-    0
-    ```
