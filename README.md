@@ -20,7 +20,7 @@ A complete working example is provided in the `docker-compose.yml` file.
 
 1. **Clone the Repository**
    ```sh
-    cp git clone https://github.com/snake2102/allora-huggingface-walkthrough.git
+    git clone https://github.com/snake2102/allora-huggingface-walkthrough.git
     ```
 3. **Copy and Populate Configuration**
     
