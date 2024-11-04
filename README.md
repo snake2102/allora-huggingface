@@ -1,16 +1,25 @@
-# Walkthrough: Deploying a Hugging Face Model as a Worker Node on the Allora Network
+## Install requirements
+```
+sudo apt update && sudo apt upgrade -y
+sudo apt install jq -y
 
-This guide provides a step-by-step process to deploy a Hugging Face model as a Worker Node within the [Allora Network](https://docs.allora.network/). By following these instructions, you will be able to integrate and run models from Hugging Face, contributing to the Allora decentralized machine intelligence ecosystem.
+# install docker
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
 
-See [complete walkthrough and instructions here](https://docs.allora.network/devs/workers/walkthroughs/walkthrough-hugging-face-worker).
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
----
-## Components
+sudo apt-get update
+sudo apt-get install docker-ce docker-ce-cli containerd.io
+docker version
 
-- **Worker**: The node that publishes inferences to the Allora chain.
-- **Inference**: A container that conducts inferences, maintains the model state, and responds to internal inference requests via a Flask application. This node operates with a basic linear regression model for price predictions.
+# install docker-compose
+VER=$(curl -s https://api.github.com/repos/docker/compose/releases/latest | grep tag_name | cut -d '"' -f 4)
 
-Check the `docker-compose.yml` file for the detailed setup of each component.
+curl -L "https://github.com/docker/compose/releases/download/"$VER"/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+
+chmod +x /usr/local/bin/docker-compose
+docker-compose --version
+```
 
 ## Docker-Compose Setup
 
