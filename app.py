@@ -57,7 +57,7 @@ def get_binance_data(token):
 
     params = {
         'symbol': symbol,
-        'interval': '1m',
+        'interval': '5m',
         'limit': 1000
     }
 
