@@ -17,7 +17,7 @@
             "inferenceEntrypointName": "api-worker-reputer",
             "loopSeconds": 3,
             "parameters": {
-                "InferenceEndpoint": "http://inference:8000/inference/{Token}",
+                "InferenceEndpoint": "http://inference:8000/inference/value/{Token}",
                 "Token": "ETH"
             }
         },
@@ -26,7 +26,7 @@
             "inferenceEntrypointName": "api-worker-reputer",
             "loopSeconds": 20,
             "parameters": {
-                "InferenceEndpoint": "http://inference:8000/inference/{Token}",
+                "InferenceEndpoint": "http://inference:8000/inference/value/{Token}",
                 "Token": "ETH"
             }
         },
@@ -35,7 +35,7 @@
             "inferenceEntrypointName": "api-worker-reputer",
             "loopSeconds": 5,
             "parameters": {
-                "InferenceEndpoint": "http://inference:8000/inference/{Token}",
+                "InferenceEndpoint": "http://inference:8000/inference/value/{Token}",
                 "Token": "BTC"
             }
         },
@@ -44,7 +44,7 @@
             "inferenceEntrypointName": "api-worker-reputer",
             "loopSeconds": 20,
             "parameters": {
-                "InferenceEndpoint": "http://inference:8000/inference/{Token}",
+                "InferenceEndpoint": "http://inference:8000/inference/value/{Token}",
                 "Token": "BTC"
             }
         },
@@ -53,7 +53,7 @@
             "inferenceEntrypointName": "api-worker-reputer",
             "loopSeconds": 4,
             "parameters": {
-                "InferenceEndpoint": "http://inference:8000/inference/{Token}",
+                "InferenceEndpoint": "http://inference:8000/inference/value/{Token}",
                 "Token": "SOL"
             }
         },
@@ -62,7 +62,7 @@
             "inferenceEntrypointName": "api-worker-reputer",
             "loopSeconds": 20,
             "parameters": {
-                "InferenceEndpoint": "http://inference:8000/inference/{Token}",
+                "InferenceEndpoint": "http://inference:8000/inference/value/{Token}",
                 "Token": "SOL"
             }
         },
@@ -71,7 +71,7 @@
             "inferenceEntrypointName": "api-worker-reputer",
             "loopSeconds": 2,
             "parameters": {
-                "InferenceEndpoint": "http://inference:8000/inference/{Token}",
+                "InferenceEndpoint": "http://inference:8000/inference/value/{Token}",
                 "Token": "ETH"
             }
         },
@@ -80,7 +80,7 @@
             "inferenceEntrypointName": "api-worker-reputer",
             "loopSeconds": 3,
             "parameters": {
-                "InferenceEndpoint": "http://inference:8000/inference/{Token}",
+                "InferenceEndpoint": "http://inference:8000/inference/value/{Token}",
                 "Token": "BNB"
             }
         },
@@ -89,7 +89,7 @@
             "inferenceEntrypointName": "api-worker-reputer",
             "loopSeconds": 5,
             "parameters": {
-                "InferenceEndpoint": "http://inference:8000/inference/{Token}",
+                "InferenceEndpoint": "http://inference:8000/inference/value/{Token}",
                 "Token": "ARB"
             }
         },
@@ -98,7 +98,7 @@
             "inferenceEntrypointName": "api-worker-reputer",
             "loopSeconds": 1,
             "parameters": {
-                "InferenceEndpoint": "http://inference:8000/inference/{Token}",
+                "InferenceEndpoint": "http://inference:8000/inference/value/{Token}",
                 "Token": "ETH"
             }
         },
@@ -107,7 +107,7 @@
             "inferenceEntrypointName": "api-worker-reputer",
             "loopSeconds": 1,
             "parameters": {
-                "InferenceEndpoint": "http://inference:8000/inference/{Token}",
+                "InferenceEndpoint": "http://inference:8000/inference/value/{Token}",
                 "Token": "BTC"
             }
         },
@@ -116,7 +116,7 @@
             "inferenceEntrypointName": "api-worker-reputer",
             "loopSeconds": 1,
             "parameters": {
-                "InferenceEndpoint": "http://inference:8000/inference/{Token}",
+                "InferenceEndpoint": "http://inference:8000/inference/volatility/{Token}",
                 "Token": "ETH"
             }
         },
@@ -125,7 +125,7 @@
             "inferenceEntrypointName": "api-worker-reputer",
             "loopSeconds": 1,
             "parameters": {
-                "InferenceEndpoint": "http://inference:8000/inference/{Token}",
+                "InferenceEndpoint": "http://inference:8000/inference/volatility/{Token}",
                 "Token": "BTC"
             }
         }
