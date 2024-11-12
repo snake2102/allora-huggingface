@@ -34,8 +34,19 @@ def get_inference(token):
 
     try:
         forecast = pipeline.predict(context, prediction_length)
-        print(forecast[0].mean().item())
-        return Response(str(forecast[0].mean().item()), status=200)
+        forecast_value = forecast[0].mean().item()
+
+        current_price = df["price"].iloc[-1]
+        old_price = df["price"].iloc[0]
+        price_change = (current_price - old_price) / old_price
+        volatility_percentage = abs(price_change) * 100
+
+        response_data = {
+            "forecast": forecast_value,
+            "volatility_percentage": volatility_percentage
+        }
+
+        return Response(json.dumps(response_data), status=200, mimetype='application/json')
     except Exception as e:
         return Response(json.dumps({"error": str(e)}), status=500, mimetype='application/json')
 
