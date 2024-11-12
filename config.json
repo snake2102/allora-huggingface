@@ -110,6 +110,24 @@
                 "InferenceEndpoint": "http://inference:8000/inference/{Token}",
                 "Token": "BTC"
             }
+        },
+        {
+            "topicId": 15,
+            "inferenceEntrypointName": "api-worker-reputer",
+            "loopSeconds": 1,
+            "parameters": {
+                "InferenceEndpoint": "http://inference:8000/inference/{Token}",
+                "Token": "ETH"
+            }
+        },
+        {
+            "topicId": 16,
+            "inferenceEntrypointName": "api-worker-reputer",
+            "loopSeconds": 1,
+            "parameters": {
+                "InferenceEndpoint": "http://inference:8000/inference/{Token}",
+                "Token": "BTC"
+            }
         }
     ]
 }
