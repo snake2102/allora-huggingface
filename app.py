@@ -72,7 +72,7 @@ def get_binance_data(token):
         raise ValueError("Token no soportado")
     params = {
         'symbol': symbol,
-        'interval': '1m',
+        'interval': '5m',
         'limit': 1000
     }
     response = requests.get(base_url, params=params)
