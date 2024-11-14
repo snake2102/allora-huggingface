@@ -23,21 +23,18 @@ except Exception as e:
 @app.route("/inference/value/<string:token>")
 def get_value_inference(token):
     if pipeline is None:
-        return Response(json.dumps({"error": "El modelo no está cargado"}), status=500, mimetype='application/json')
+        return Response("El modelo no está cargado", status=500, mimetype='text/plain')
     try:
         df = get_binance_data(token)
         context = torch.tensor(df["price"].values)
         prediction_length = 1
         forecast = pipeline.predict(context, prediction_length)
         forecast_value = forecast[0].mean().item()
-        response_data = {
-            "forecast": forecast_value
-        }
-        return Response(json.dumps(response_data), status=200, mimetype='application/json')
+        return Response(str(forecast_value), status=200, mimetype='text/plain')
     except Exception as e:
         traceback_str = traceback.format_exc()
         print(traceback_str)
-        return Response(json.dumps({"error": str(e)}), status=500, mimetype='application/json')
+        return Response(str(e), status=500, mimetype='text/plain')
 
 @app.route("/inference/volatility/<string:token>")
 def get_volatility_inference(token):
@@ -47,14 +44,11 @@ def get_volatility_inference(token):
         old_price = df["price"].iloc[0]
         price_change = (current_price - old_price) / old_price
         volatility_percentage = abs(price_change) * 100
-        response_data = {
-            "volatility_percentage": volatility_percentage
-        }
-        return Response(json.dumps(response_data), status=200, mimetype='application/json')
+        return Response(str(volatility_percentage), status=200, mimetype='text/plain')
     except Exception as e:
         traceback_str = traceback.format_exc()
         print(traceback_str)
-        return Response(json.dumps({"error": str(e)}), status=500, mimetype='application/json')
+        return Response(str(e), status=500, mimetype='text/plain')
 
 def get_binance_data(token):
     base_url = "https://api.binance.com/api/v3/klines"
