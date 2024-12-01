@@ -57,4 +57,10 @@ A complete working example is provided in the `docker-compose.yml` file.
     ```sh
     docker compose logs -f worker
     ```
-6. **5. **Testing Inference Only**
+6. **Testing Inference Only**
+
+   Send requests to the inference model:
+    ```sh
+    docker compose up --build
+    ```
+   
