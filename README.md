@@ -57,3 +57,4 @@ A complete working example is provided in the `docker-compose.yml` file.
     ```sh
     docker compose logs -f worker
     ```
+6. **5. **Testing Inference Only**
