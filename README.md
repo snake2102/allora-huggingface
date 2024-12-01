@@ -54,3 +54,6 @@ A complete working example is provided in the `docker-compose.yml` file.
     ```sh
     docker compose up --build
     ```
+    ```sh
+    docker compose logs -f worker
+    ```
