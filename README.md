@@ -61,6 +61,7 @@ A complete working example is provided in the `docker-compose.yml` file.
 
    Send requests to the inference model:
     ```sh
-    docker compose up --build
+    curl http://127.0.0.1:8000/inference/value/eth
+    curl http://127.0.0.1:8000/inference/value/btc
     ```
    
