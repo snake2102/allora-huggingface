@@ -5,4 +5,4 @@ pandas
 ta
 torch
 transformers
-git+https://github.com/amazon-science/chronos-forecasting.git
+chronos-forecasting
