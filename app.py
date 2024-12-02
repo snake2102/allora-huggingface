@@ -9,7 +9,7 @@ import ta
 
 app = Flask(__name__)
 
-model_name = "amazon/chronos-bolt-small"
+model_name = "amazon/chronos-bolt-base"
 
 try:
     pipeline = BaseChronosPipeline.from_pretrained(
