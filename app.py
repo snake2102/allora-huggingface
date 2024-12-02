@@ -5,16 +5,15 @@ import pandas as pd
 import torch
 from chronos import BaseChronosPipeline
 import traceback
-import ta
 
 app = Flask(__name__)
 
-model_name = "amazon/chronos-bolt-base"
+model_name = "amazon/chronos-bolt-small"
 
 try:
     pipeline = BaseChronosPipeline.from_pretrained(
         model_name,
-        device_map="cpu",
+        device_map="auto",
         torch_dtype=torch.float32
     )
 except Exception as e:
@@ -27,7 +26,6 @@ def get_value_inference(token):
         return Response("El modelo no está cargado", status=500, mimetype='text/plain')
     try:
         df = get_binance_data(token)
-        df = add_technical_indicators(df)
         context = torch.tensor(df.drop(columns=['date']).values, dtype=torch.float32)
         context = context.contiguous()
         prediction_length = 1
@@ -97,19 +95,6 @@ def get_binance_data(token):
         return df
     else:
         raise Exception(f"Fallo al recuperar datos de la API de Binance: {response.text}")
-
-def add_technical_indicators(df):
-    df.set_index('date', inplace=True)
-    df['SMA'] = ta.trend.SMAIndicator(close=df['close'], window=14).sma_indicator()
-    df['EMA'] = ta.trend.EMAIndicator(close=df['close'], window=14).ema_indicator()
-    df['RSI'] = ta.momentum.RSIIndicator(close=df['close'], window=14).rsi()
-    macd = ta.trend.MACD(close=df['close'])
-    df['MACD'] = macd.macd()
-    df['MACD_Signal'] = macd.macd_signal()
-    df['MACD_Hist'] = macd.macd_diff()
-    df = df.dropna()
-    df.reset_index(inplace=True)
-    return df
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=8000, debug=True)
