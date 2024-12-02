@@ -13,7 +13,7 @@ model_name = "amazon/chronos-bolt-base"
 try:
     pipeline = BaseChronosPipeline.from_pretrained(
         model_name,
-        device_map="auto",
+        device_map="cpu",
         torch_dtype=torch.float32
     )
 except Exception as e:
