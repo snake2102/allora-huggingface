@@ -2,6 +2,7 @@ flask
 gunicorn
 requests
 pandas
+ta
 torch
 transformers
 chronos-forecasting
