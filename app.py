@@ -1,56 +1,126 @@
-from flask import Flask, Response
+from flask import Flask, Response, request
 import requests
 import json
 import pandas as pd
 import torch
 from chronos import BaseChronosPipeline
 import traceback
-import ta
+import logging
 
 app = Flask(__name__)
+
+# Configurar el registro (logging)
+logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
+app.logger.setLevel(logging.DEBUG)
 
 model_name = "amazon/chronos-bolt-base"
 
 try:
+    app.logger.info("Cargando el modelo Chronos-Bolt...")
     pipeline = BaseChronosPipeline.from_pretrained(
         model_name,
         device_map="auto",
         torch_dtype=torch.float32
     )
+    app.logger.info("Modelo cargado exitosamente.")
 except Exception as e:
-    print(f"Error al cargar el modelo: {e}")
+    app.logger.error(f"Error al cargar el modelo: {e}")
     pipeline = None
 
-@app.route("/inference/value/<string:token>")
-def get_value_inference(token):
+@app.route("/inference/value/<string:token>/<int:prediction_length>", methods=['GET'])
+def get_value_inference(token, prediction_length):
     if pipeline is None:
+        app.logger.error("Intento de inferencia sin modelo cargado.")
         return Response("El modelo no está cargado", status=500, mimetype='text/plain')
     try:
+        app.logger.debug(f"Recibiendo solicitud de inferencia para token: {token} con prediction_length: {prediction_length}")
         df = get_binance_data(token)
-        df = add_technical_indicators(df)
-        context = torch.tensor(df.drop(columns=['date']).values, dtype=torch.float32)
-        context = context.contiguous()
-        prediction_length = 1
+        app.logger.debug(f"Datos obtenidos: {df.head()}")
+
+        # Preparar el contexto
+        context = torch.tensor(df['close'].values, dtype=torch.float32).unsqueeze(0)
+        app.logger.debug(f"Contexto preparado con shape: {context.shape}")
+
+        # Validar prediction_length
+        if prediction_length <= 0:
+            app.logger.error("prediction_length debe ser un entero positivo.")
+            return Response("prediction_length debe ser un entero positivo.", status=400, mimetype='text/plain')
+
         forecast = pipeline.predict(context, prediction_length)
-        forecast_value = forecast[0].mean().item()
-        return Response(str(forecast_value), status=200, mimetype='text/plain')
+        app.logger.debug(f"Forecast generado: {forecast}")
+
+        # Verificar la forma de la predicción
+        if forecast.ndim != 3:
+            app.logger.error(f"Forecast tiene una forma inesperada: {forecast.shape}")
+            return Response("La predicción generada tiene una forma inesperada.", status=500, mimetype='text/plain')
+
+        # Calcular la media de las cuantiles para cada paso de predicción
+        forecast_mean = forecast.mean(dim=1).squeeze().tolist()
+        app.logger.debug(f"Forecast mean calculado: {forecast_mean}")
+
+        # Retornar la lista de valores decimales como JSON
+        return Response(json.dumps({"cast": forecast_mean}), status=200, mimetype='application/json')
     except Exception as e:
         traceback_str = traceback.format_exc()
-        print(traceback_str)
+        app.logger.error(f"Error durante la inferencia: {traceback_str}")
         return Response(str(e), status=500, mimetype='text/plain')
 
-@app.route("/inference/volatility/<string:token>")
+@app.route("/inference/value/<string:token>", methods=['GET'])
+def get_value_inference_default(token):
+    default_prediction_length = 1  # Valor predeterminado para prediction_length
+    if pipeline is None:
+        app.logger.error("Intento de inferencia sin modelo cargado.")
+        return Response("El modelo no está cargado", status=500, mimetype='text/plain')
+    try:
+        app.logger.debug(f"Recibiendo solicitud de inferencia para token: {token} con prediction_length: {default_prediction_length}")
+        df = get_binance_data(token)
+        app.logger.debug(f"Datos obtenidos: {df.head()}")
+
+        # Preparar el contexto
+        context = torch.tensor(df['close'].values, dtype=torch.float32).unsqueeze(0)
+        app.logger.debug(f"Contexto preparado con shape: {context.shape}")
+
+        # Validar prediction_length
+        if default_prediction_length <= 0:
+            app.logger.error("prediction_length debe ser un entero positivo.")
+            return Response("prediction_length debe ser un entero positivo.", status=400, mimetype='text/plain')
+
+        forecast = pipeline.predict(context, default_prediction_length)
+        app.logger.debug(f"Forecast generado: {forecast}")
+
+        # Verificar la forma de la predicción
+        if forecast.ndim != 3:
+            app.logger.error(f"Forecast tiene una forma inesperada: {forecast.shape}")
+            return Response("La predicción generada tiene una forma inesperada.", status=500, mimetype='text/plain')
+
+        # Calcular la media de las cuantiles para cada paso de predicción
+        forecast_mean = forecast.mean(dim=1).squeeze().item()
+        app.logger.debug(f"Forecast mean calculado: {forecast_mean}")
+
+        # Retornar el valor decimal directamente como texto plano
+        return Response(str(forecast_mean), status=200, mimetype='text/plain')
+    except Exception as e:
+        traceback_str = traceback.format_exc()
+        app.logger.error(f"Error durante la inferencia: {traceback_str}")
+        return Response(str(e), status=500, mimetype='text/plain')
+
+@app.route("/inference/volatility/<string:token>", methods=['GET'])
 def get_volatility_inference(token):
     try:
+        app.logger.debug(f"Recibiendo solicitud de volatilidad para token: {token}")
         df = get_binance_data(token)
+        app.logger.debug(f"Datos obtenidos para volatilidad: {df.head()}")
+
         current_price = df["price"].iloc[-1]
         old_price = df["price"].iloc[0]
         price_change = (current_price - old_price) / old_price
         volatility_percentage = abs(price_change) * 100
+        app.logger.debug(f"Volatilidad calculada: {volatility_percentage}%")
+
         return Response(str(volatility_percentage), status=200, mimetype='text/plain')
     except Exception as e:
         traceback_str = traceback.format_exc()
-        print(traceback_str)
+        app.logger.error(f"Error durante el cálculo de volatilidad: {traceback_str}")
         return Response(str(e), status=500, mimetype='text/plain')
 
 def get_binance_data(token):
@@ -84,32 +154,15 @@ def get_binance_data(token):
             "ignore"
         ])
         df["date"] = pd.to_datetime(df["close_time"], unit='ms')
-        df["open"] = df["open"].astype(float)
-        df["high"] = df["high"].astype(float)
-        df["low"] = df["low"].astype(float)
         df["close"] = df["close"].astype(float)
-        df["volume"] = df["volume"].astype(float)
         df["price"] = df["close"]
-        df = df[["date", "open", "high", "low", "close", "volume", "price"]]
+        df = df[["date", "close", "price"]]
         df = df[:-1]
         if df.empty:
             raise Exception("El dataframe de precios está vacío")
         return df
     else:
         raise Exception(f"Fallo al recuperar datos de la API de Binance: {response.text}")
-
-def add_technical_indicators(df):
-    df.set_index('date', inplace=True)
-    df['SMA'] = ta.trend.SMAIndicator(close=df['close'], window=14).sma_indicator()
-    df['EMA'] = ta.trend.EMAIndicator(close=df['close'], window=14).ema_indicator()
-    df['RSI'] = ta.momentum.RSIIndicator(close=df['close'], window=14).rsi()
-    macd = ta.trend.MACD(close=df['close'])
-    df['MACD'] = macd.macd()
-    df['MACD_Signal'] = macd.macd_signal()
-    df['MACD_Hist'] = macd.macd_diff()
-    df = df.dropna()
-    df.reset_index(inplace=True)
-    return df
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=8000, debug=True)
