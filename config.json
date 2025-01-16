@@ -31,7 +31,7 @@
             "inferenceEntrypointName": "api-worker-reputer",
             "loopSeconds": 2,
             "parameters": {
-                "InferenceEndpoint": "http://inference:8000/inference/value/{Token}",
+                "InferenceEndpoint": "http://inference:8000/inference/volume/{Token}",
                 "Token": "USDC/ETH"
             }
         },
