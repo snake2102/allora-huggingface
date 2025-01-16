@@ -22,7 +22,7 @@
             "inferenceEntrypointName": "api-worker-reputer",
             "loopSeconds": 1,
             "parameters": {
-                "InferenceEndpoint": "http://inference:8000/inference/value/{Token}",
+                "InferenceEndpoint": "http://inference:8000/inference/volatility/{Token}",
                 "Token": "ETH"
             }
         },
