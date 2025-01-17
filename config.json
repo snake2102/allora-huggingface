@@ -4,16 +4,16 @@
         "addressRestoreMnemonic": "",
         "alloraHomeDir": "",
         "gas": "auto",
-        "gasAdjustment": 1.5,
-        "gasPrices": "10.0",
+        "gasAdjustment": 2,
+        "gasPrices": "15",
         "maxFees": 25000000,
-        "nodeRpc": "https://allora-rpc.testnet.allora.network",
+        "nodeRpc": "https://allora-rpc.testnet.allora.network/",
         "maxRetries": 5,
-        "retryDelay": 3,
         "accountSequenceRetryDelay": 5,
-        "submitTx": true,
         "blockDurationEstimated": 10,
-        "windowCorrectionFactor": 0.8
+        "windowCorrectionFactor": 0.8,
+        "retryDelay": 3,
+        "submitTx": true
     },
     "worker": [
         {
