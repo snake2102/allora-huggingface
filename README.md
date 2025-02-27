@@ -61,12 +61,6 @@ A complete working example is provided in the `docker-compose.yml` file.
 
    Send requests to the inference model:
     ```sh
-    curl http://127.0.0.1:8000/inference/value/eth
-    curl http://127.0.0.1:8000/inference/value/btc
-    curl http://127.0.0.1:8000/inference/value/bnb
-    curl http://127.0.0.1:8000/inference/value/arb
-    curl http://127.0.0.1:8000/inference/value/sol
-    curl http://127.0.0.1:8000/inference/volatility/eth
-    curl http://127.0.0.1:8000/inference/volatility/btc
+    curl http://127.0.0.1:8000/inference/value/btc/5
     ```
    
