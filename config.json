@@ -1,47 +1,45 @@
 {
-    "wallet": {
-        "addressKeyName": "",
-        "addressRestoreMnemonic": "",
-        "alloraHomeDir": "",
-        "gas": "auto",
-        "gasAdjustment": 2,
-        "gasPrices": "15",
-        "maxFees": 25000000,
-        "nodeRpc": "https://allora-rpc.testnet.allora.network/",
-        "maxRetries": 5,
-        "accountSequenceRetryDelay": 5,
-        "blockDurationEstimated": 10,
-        "windowCorrectionFactor": 0.8,
-        "retryDelay": 3,
-        "submitTx": true
-    },
-    "worker": [
-        {
-            "topicId": 28,
-            "inferenceEntrypointName": "api-worker-reputer",
-            "loopSeconds": 1,
-            "parameters": {
-                "InferenceEndpoint": "http://inference:8000/inference/volatility/{Token}",
-                "Token": "ETH"
-            }
-        },
-        {
-            "topicId": 29,
-            "inferenceEntrypointName": "api-worker-reputer",
-            "loopSeconds": 2,
-            "parameters": {
-                "InferenceEndpoint": "http://inference:8000/inference/volume/{Token}",
-                "Token": "USDC/ETH"
-            }
-        },
-        {
-            "topicId": 30,
-            "inferenceEntrypointName": "api-worker-reputer",
-            "loopSeconds": 3,
-            "parameters": {
-                "InferenceEndpoint": "http://inference:8000/inference/value/{Token}",
-                "Token": "ETH"
-            }
-        }
-    ]
+  "wallet": {
+    "chainId": "allora-testnet-1",
+    "keyringBackend": "test",
+    "keyringPassphrase": "",
+    "addressKeyName": "testkey",
+    "addressRestoreMnemonic": "your mnemonic here",
+    "alloraHomeDir": "",
+    "gasPrices": "auto",
+    "gasPriceUpdateInterval": 5,
+    "maxFees": 50000000,
+    "gasAdjustment": 1.2,
+    "simulateGasFromStart": true,
+    "GasPerByte": 1,
+    "BaseGas": 200000,
+    "nodeRpcs": [
+      "https://allora-rpc.testnet.allora.network"
+    ],
+    "nodegRpcs": [
+      "allora-grpc.testnet.allora.network:443",
+      "testnet-allora.lavenderfive.com:443"
+    ],
+    "maxRetries": 5,
+    "retryDelay": 3,
+    "accountSequenceRetryDelay": 5,
+    "launchRoutineDelay": 5,
+    "submitTx": true,
+    "blockDurationEstimated": 6,
+    "windowCorrectionFactor": 0.8,
+    "timeoutRPCSecondsQuery": 60,
+    "timeoutRPCSecondsTx": 300,
+    "timeoutRPCSecondsRegistration": 300,
+    "timeoutHTTPConnection": 10
+  },
+  "worker": [
+    {
+      "topicId": 47,
+      "inferenceEntrypointName": "apiAdapter",
+      "parameters": {
+        "InferenceEndpoint": "http://source:8000/inference/{Token}",
+        "Token": "BTC"
+      }
+    }
+  ]
 }
