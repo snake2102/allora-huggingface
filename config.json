@@ -46,9 +46,8 @@
       "topicId": 50,
       "inferenceEntrypointName": "apiAdapter",
       "parameters": {
-        "InferenceEndpoint": "http://inference:8000/inference/value/{Token}/{pl}",
-        "Token": "BTC",
-        "pl": "72"
+        "InferenceEndpoint": "http://inference:8000/inference/volatility/{Token}",
+        "Token": "BTC"
       }
     }
   ]
