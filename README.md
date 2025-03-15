@@ -63,7 +63,6 @@ A complete working example is provided in the `docker-compose.yml` file.
     ```sh
     curl http://127.0.0.1:8000/inference/value/SOL
     curl http://127.0.0.1:8000/inference/value/ETH
-    curl http://127.0.0.1:8000/inference/value/BTC
     curl http://127.0.0.1:8000/inference/volatility/BTC
     ```
    
