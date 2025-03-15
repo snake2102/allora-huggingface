@@ -50,14 +50,6 @@
       }
     },
     {
-      "topicId": 47,
-      "inferenceEntrypointName": "apiAdapter",
-      "parameters": {
-        "InferenceEndpoint": "http://inference:8000/inference/value/{Token}",
-        "Token": "BTC"
-      }
-    },
-    {
       "topicId": 50,
       "inferenceEntrypointName": "apiAdapter",
       "parameters": {
