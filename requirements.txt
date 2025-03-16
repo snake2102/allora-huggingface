@@ -1,9 +1,8 @@
-flask 
+flask
 gunicorn
 requests
 pandas
-torch
-transformers
-chronos-forecasting
 numpy
 scikit-learn
+timesfm[torch]
+transformers
