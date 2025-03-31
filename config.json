@@ -34,19 +34,11 @@
   },
   "worker": [
     {
-      "topicId": 37,
+      "topicId": 56,
       "inferenceEntrypointName": "apiAdapter",
       "parameters": {
         "InferenceEndpoint": "http://inference:8000/inference/value/{Token}",
-        "Token": "SOL"
-      }
-    },
-    {
-      "topicId": 46,
-      "inferenceEntrypointName": "apiAdapter",
-      "parameters": {
-        "InferenceEndpoint": "http://inference:8000/inference/value/{Token}",
-        "Token": "ETH"
+        "Token": "BERA"
       }
     }
   ]
