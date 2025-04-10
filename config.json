@@ -22,7 +22,7 @@
     ],
     "maxRetries": 5,
     "retryDelay": 3,
-    "accountSequenceRetryDelay": 5,
+    "accountSequenceRetryDelay": 1,
     "launchRoutineDelay": 5,
     "submitTx": true,
     "blockDurationEstimated": 6,
