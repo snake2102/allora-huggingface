@@ -40,6 +40,14 @@
         "InferenceEndpoint": "http://inference:8000/inference/value/{Token}",
         "Token": "BERA"
       }
+    },
+    {
+      "topicId": 58,
+      "inferenceEntrypointName": "apiAdapter",
+      "parameters": {
+        "InferenceEndpoint": "http://inference:8000/inference/value/{Token}",
+        "Token": "SOL"
+      }
     }
   ]
 }
