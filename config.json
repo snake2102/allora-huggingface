@@ -38,7 +38,7 @@
       "inferenceEntrypointName": "apiAdapter",
       "parameters": {
         "InferenceEndpoint": "http://inference:8000/inference/value/{Token}",
-        "Token": "SOL"
+        "Token": "sol"
       }
     }
   ]
