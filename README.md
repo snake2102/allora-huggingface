@@ -61,7 +61,6 @@ A complete working example is provided in the `docker-compose.yml` file.
 
    Send requests to the inference model:
     ```sh
-    curl http://127.0.0.1:8000/inference/value/BERA
-    curl http://127.0.0.1:8000/inference/value/SOL
+   curl http://127.0.0.1:8000/inference/value/SOL
     ```
    
