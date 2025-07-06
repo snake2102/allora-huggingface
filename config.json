@@ -35,11 +35,11 @@
   },
   "worker": [
     {
-      "topicId": 58,
+      "topicId": 60,
       "inferenceEntrypointName": "apiAdapter",
       "parameters": {
         "InferenceEndpoint": "http://inference:8000/inference/value/{Token}",
-        "Token": "sol"
+        "Token": "paxg"
       }
     }
   ]
