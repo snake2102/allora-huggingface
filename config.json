@@ -41,6 +41,30 @@
         "InferenceEndpoint": "http://inference:8000/inference/value/{Token}",
         "Token": "paxg"
       }
+    },
+    {
+      "topicId": 61,
+      "inferenceEntrypointName": "apiAdapter",
+      "parameters": {
+        "InferenceEndpoint": "http://inference:8000/inference/value/{Token}",
+        "Token": "btc"
+      }
+    },
+    {
+      "topicId": 62,
+      "inferenceEntrypointName": "apiAdapter",
+      "parameters": {
+        "InferenceEndpoint": "http://inference:8000/inference/value/{Token}",
+        "Token": "sol"
+      }
+    },
+    {
+      "topicId": 63,
+      "inferenceEntrypointName": "apiAdapter",
+      "parameters": {
+        "InferenceEndpoint": "http://inference:8000/inference/value/{Token}",
+        "Token": "eth"
+      }
     }
   ]
 }
