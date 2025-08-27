@@ -35,15 +35,7 @@
   },
   "worker": [
     {
-      "topicId": 60,
-      "inferenceEntrypointName": "apiAdapter",
-      "parameters": {
-        "InferenceEndpoint": "http://inference:8000/inference/value/{Token}",
-        "Token": "paxg"
-      }
-    },
-    {
-      "topicId": 61,
+      "topicId": 64,
       "inferenceEntrypointName": "apiAdapter",
       "parameters": {
         "InferenceEndpoint": "http://inference:8000/inference/value/{Token}",
@@ -51,19 +43,11 @@
       }
     },
     {
-      "topicId": 62,
+      "topicId": 65,
       "inferenceEntrypointName": "apiAdapter",
       "parameters": {
         "InferenceEndpoint": "http://inference:8000/inference/value/{Token}",
-        "Token": "sol"
-      }
-    },
-    {
-      "topicId": 63,
-      "inferenceEntrypointName": "apiAdapter",
-      "parameters": {
-        "InferenceEndpoint": "http://inference:8000/inference/value/{Token}",
-        "Token": "eth"
+        "Token": "btc"
       }
     }
   ]
