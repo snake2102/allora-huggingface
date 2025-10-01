@@ -62,8 +62,8 @@
       "topicId": 69,
       "inferenceEntrypointName": "apiAdapter",
       "parameters": {
-        "InferenceEndpoint": "http://inference:8000/inference/value/{Token}",
-        "Token": "btc"
+        "InferenceEndpoint": "http://inference:8000/inference/value/btc_1d",
+        "Token": "btc_1d"
       }
     }
   ]
