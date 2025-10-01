@@ -43,14 +43,6 @@
       }
     },
     {
-      "topicId": 60,
-      "inferenceEntrypointName": "apiAdapter",
-      "parameters": {
-        "InferenceEndpoint": "http://inference:8000/inference/value/{Token}",
-        "Token": "xau"
-      }
-    },
-    {
       "topicId": 64,
       "inferenceEntrypointName": "apiAdapter",
       "parameters": {
